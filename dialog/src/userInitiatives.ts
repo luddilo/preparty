@@ -1,5 +1,5 @@
 import { UserTurn, ANYTHING } from "narratory"
-import { queryReachOut } from "./turns"
+import { queryReachOut } from "./queryReachOut"
 
 export const questions: UserTurn[] = [{
     intent: ["I want to quit", "stop this", "stop it", "end this chat", "goodbye", "bye"],
