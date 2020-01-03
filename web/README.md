@@ -1,6 +1,6 @@
 # Preparty web
 
-This site is built using NextJS and uses our (currently) properiatery chat authoring tool on top of DialogFlow for chat and Zeit.co for hosting.
+This site is built using NextJS and uses the [Narratory.io](https://narratory.io) dialog-first chat & voice app tool for chat and Zeit.co for hosting.
 
 ## Setting up
 
@@ -8,14 +8,10 @@ This site is built using NextJS and uses our (currently) properiatery chat autho
 $ npm install
 ```
 
-### Setting up DialogFlow
+### Setting up the chat
 
-1. Create an account on [Dialogflow](https://dialogflow.com/)
-2. Follow their instructions and create an agent (choose the 2.0 API and create a new Google Cloud Project for it)
-3. If you don't already, make sure you have [enabled billing for the GCP account](https://console.cloud.google.com/billing/linkedaccount)
-4. [Enable the DialogFlow API](https://console.cloud.google.com/apis/library/dialogflow.googleapis.com?q=dialogflow) for the GCP-project
-5. Create a [Google Cloud service-account](https://console.cloud.google.com/apis/credentials?authuser=1&folder=&organizationId=&) for the created project, with role **DialogFlow API Client**
-6. Create a key (of type JSON) for the new service-account, download it into the root of this project and rename the file `google_credentials.json`
+1. Follow the [Narratory setup docs](https://narratory.io/docs/setup) to set up your first Narratory agent. 
+2. Paste in your Google credentials in the `google_credentials.json` file in the root of this repo.
 
 ## Running
 
