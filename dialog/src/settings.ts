@@ -1,0 +1,1 @@
+export const SIGNUP_URL = "https://preparty.ludd.now.sh/api/call-slack"

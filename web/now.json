@@ -1,0 +1,6 @@
+{
+    "name": "preparty",
+    "env": {
+        "slackurl": "@slackurl"
+    }
+}

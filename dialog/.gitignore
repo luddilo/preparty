@@ -1,0 +1,5 @@
+node_modules
+out
+google_credentials.json
+narratory_credentials.json
+secrets.json

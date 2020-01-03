@@ -1,0 +1,52 @@
+[
+    {
+        "title": "Narratory, a dialog-first tool to create chat-bots & voice apps",
+        "client": "Narratory",
+        "link": "https://narratory.io",
+        "description": "Start-to-finish building of a complete toolset to create scalable chat-bots for Google Assistant, Alexa, Web, apps and more.",
+        "frameworks": "Dialogflow, ReactJS, Firebase, NextJS",
+        "languages": "Typescript"
+    },
+    {
+        "title": "Retail assistant social robot skill for Furhat robot",
+        "client": "Etisalat, through Furhat Robotics",
+        "description": "Holistic delivery of a retail assistant robot helping customers with offline pickups, returns and personalized product recommendations.",
+        "frameworks": "Furhat SDK, ReactJS",
+        "languages": "Kotlin, Javascript"
+    },
+    {
+        "title": "Receptionist skill for Furhat robot",
+        "client": "Furhat Robotics",
+        "description": "A proof-of-concept skill for a social robot serving as a receptionist for a SME office. The robot could for example look up the where-abouts of employees using Google calendar, send slack-messages to employees if visitor would approach them or tell you where your last meeting was",
+        "frameworks": "Furhat SDK, Google Calendar API, Slack API",
+        "languages": "Kotlin, Javascript"
+    },
+    {
+        "title": "Furhat developer zone",
+        "client": "Furhat Robotics",
+        "description": "A system serving part as an externally facing developer-zone - integrating several tools and allowing downloads of the Furhat SDK - as well as being an internal CMS used to manage robots, customers, contracts etc - with several APIs to automate robot-installations, telemetry and automatic partner license generation (Google and Amazon)",
+        "frameworks": "Laravel, Laravel forge, AWS IAM API",
+        "languages": "PHP, Python"
+    },
+    {
+        "title": "This site",
+        "client": "ourselves",
+        "description": "This excellent site",
+        "frameworks": "NextJS, ReactJS, Narratory",
+        "languages": "Typescript"
+    },
+    {
+        "title": "Spontano, an event-discovery market place",
+        "client": "Spontano AB",
+        "description": "A mobile (iOS, Android, Web) event marketplace allowing users to explore cultural events happening in Stockholm. Acquired in 2016 by Abundo.",
+        "frameworks": "Laravel",
+        "languages": "Java, PHP"
+    },
+    {
+        "title": "Matchmaking tool and CMS",
+        "client": "United Invitations (Invitationsdepartementet)",
+        "description": "A tool used by the non-profit Invitationsdepartementet to manage and matchmake their thousands of participants in their dinner matchmaking programme.",
+        "frameworks": "Laravel",
+        "languages": "PHP, Javascript"
+    }
+]
