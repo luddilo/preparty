@@ -1,4 +1,5 @@
 import React from "react"
+import ReactDOM from "react-dom"
 import Typist from 'react-typist'
 import dynamic from 'next/dynamic'
 import 'react-typist/dist/Typist.css'
@@ -13,12 +14,23 @@ interface LogProps {
     setAnimating: (boolean) => void
     handleEvent: (string) => void
     showContent: (any) => void
+    handleLineBreak: () => void
     messages: any[]
 }
 
 class Log extends React.Component<LogProps, any> {
     constructor(props) {
         super(props)
+        this.state = {
+            lastHeight: 0
+        }
+    }
+
+    componentDidMount() {
+        this.setState({
+            ...this.state,
+            logRef: ReactDOM.findDOMNode(this.refs["log"])
+        })
     }
 
     handleAnimationDone = (message: RichMessage) => {
@@ -41,7 +53,8 @@ class Log extends React.Component<LogProps, any> {
                         text-align: right;
                         padding-right: 20px;
                     }                    
-                    .bot {
+                    .bot::first-letter {
+                        text-transform: capitalize;
                     }
                 `}</style>
             </div>
@@ -59,6 +72,62 @@ class Log extends React.Component<LogProps, any> {
         )
     }
 
+    hasValidCharacterForLineBreak = (char, nextChar = null) => {
+        switch (char) {
+            case " ": 
+            case "\n": 
+                return true
+            case ";":
+            case ",":
+            case ".":
+                return nextChar && this.hasValidCharacterForLineBreak(nextChar)
+        }
+
+    }
+    onCharacterTyped = (char, pos) => {
+        if (this.state.typistRef) {
+            const rect = this.state.typistRef.getBoundingClientRect()
+            if (rect.width == 0) {
+                const typistRef = ReactDOM.findDOMNode(this.refs["typist"])
+
+                this.setState({
+                    ...this.state,
+                    typistRef,
+                    lastHeight: typistRef.getBoundingClientRect().height
+                })
+            } else {
+                if (rect.height != this.state.lastHeight) {
+                    if (this.state.lastHeight != 0) {
+                        this.props.handleLineBreak()
+                        // The below saved for reference, but not needed ...
+
+                        // const lineToType = ((this.refs.typist as any).linesToType[0] as string)
+                        // let firstMessage : string
+                        // let secondMessage : string
+                        // if (this.hasValidCharacterForLineBreak(char, lineToType.length >= pos +1 ? lineToType[pos + 1] : null)) {
+                        //     firstMessage = lineToType.substring(0, pos)
+                        //     secondMessage = lineToType.substring(pos)
+                        // } else {
+                        //     firstMessage = lineToType.substring(0, lineToType.substring(0, pos).lastIndexOf(" "))
+                        //     secondMessage = lineToType.substring(lineToType.substring(0, pos).lastIndexOf(" "))
+                        // }
+
+                        // this.props.splitLastMessage([firstMessage, secondMessage])
+                    }
+                    this.setState({
+                        ...this.state,
+                        lastHeight: rect.height
+                    })
+                }
+            }
+        } else {
+            this.setState({
+                ...this.state,
+                typistRef: ReactDOM.findDOMNode(this.refs["typist"])
+            })
+        }
+    }
+
     getTextMessage = (message: RichMessage, last: boolean) => {
         const { setAnimating, handleEvent, showContent } = this.props
         if (last) {
@@ -71,8 +140,14 @@ class Log extends React.Component<LogProps, any> {
                 if (message.richContent) {
                     showContent(message.content)
                 }
+                if (message.text === undefined) {
+                    this.props.setAnimating(false)
+                    return null
+                }
                 return <Typist // Animating text being typed
+                    ref="typist"
                     avgTypingDelay={DELAY_BETWEEN_CHARACTERS}
+                    onCharacterTyped={(char, pos) => this.onCharacterTyped(char, pos)}
                     onTypingDone={() => this.handleAnimationDone(message)}
                     cursor={{ hideWhenDone: true, hideWhenDoneDelay: 200 }}
                 >
@@ -86,13 +161,14 @@ class Log extends React.Component<LogProps, any> {
     render() {
         const { messages, setAnimating, handleEvent, showContent, ...props } = this.props
         return (
-            <div {...props} className={"top"} >
+            <div ref="log" {...props} className={"top"} >
                 {messages.map((message, index) => this.getMessage(message, index, index == messages.length - 1))}
                 <style jsx>{`
                     .top {
-                        height: calc(100% - ${navbarVerticalPadding}*2 - ${navbarHeight});
+                        // height: calc(100% - ${navbarVerticalPadding}*2 - ${navbarHeight});
+                        height: calc(100% - 160px); // the input bar is 40px + 80px padding
+                        padding-bottom: 40px;
                         overflow-y: auto;
-                        font-size: 20px;
                     }
                 `}</style>
             </div>
@@ -101,9 +177,3 @@ class Log extends React.Component<LogProps, any> {
 }
 
 export default autoscroll(Log)
-
-// position: absolute;
-//                     bottom: 0%;
-//                     overflow-y: scroll;
-//                     height: 90%;
-//                     margin-bottom: 10%;  

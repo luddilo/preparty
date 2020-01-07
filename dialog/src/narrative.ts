@@ -3,7 +3,8 @@ import { Yes, No, IWorkWith, Great, Bad } from "./nlu"
 import { queryReachOut } from "./queryReachOut"
 
 const greeting = ["hi there", "hello there", "hi"]
-const welcome = ["welcome to the Preparty!", "welcome to Preparty", "welcome to the Preparty agency"]
+const welcome = ["welcome to the Preparty", "welcome to Preparty", "welcome to the Preparty agency"]
+
 const intro = [
     "we are a few tech enthusiasts with a strength in interactive experiences",
     "we make interactive stuff",
@@ -107,7 +108,7 @@ const founder: BotTurn = {
                 },
             ]
         },
-        { intent: ANYTHING, bot: "Alright. Moving on." }
+        { intent: ANYTHING, bot: "Alright! Nice! Now." }
     ]
 }
 
@@ -150,7 +151,7 @@ const narratory: BridgeTurn = {
             {
                 intent: [...Yes.examples, "neat"],
                 bot: {
-                    say: "Right? You can actually try it out yourself on https://narratory.io, it's free!",
+                    say: "Right? You can actually try it out yourself on narratory.io, it's free!",
                     bot: queryReachOut("Narratory")
                 }
             },

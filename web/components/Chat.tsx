@@ -47,6 +47,11 @@ const Chat = ({ triggerEvent, showContent }) => {
         setNewMessages(newMessages => newMessages.concat(messages))
     }
 
+    const handleLineBreak = () => {
+        //setNewMessages(newMessages => splitMessages.slice(1).concat(newMessages)) // not needed any more, saving for reference
+        setNewMessages(newMessages => [{}].concat(newMessages))
+    }
+
     const handleAnimation = (animating: boolean) => {
         setAnimating(animating)
         //        if (!animating) {
@@ -98,6 +103,7 @@ const Chat = ({ triggerEvent, showContent }) => {
                 setAnimating={handleAnimation}
                 handleEvent={showContent}
                 showContent={showContent}
+                handleLineBreak={handleLineBreak} 
             />
             <form className={"bottom container"} onSubmit={handleSubmit}>
                 <input className="form input" type="text" value={draft} onChange={(e) => setDraft(e.target.value)} />

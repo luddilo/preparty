@@ -15,11 +15,11 @@ const links = [
 const navBar = ({ activePage }) => {
   return (
     <div>
-      <Navbar variant="light" expand="sm">
+      <Navbar variant="light" expand="lg">
         <Container>
           <Navbar.Brand className="py-0" href="/">PREPARTY LABS</Navbar.Brand>
           <Navbar.Toggle className="py-0" aria-controls="myNavBar" />
-          <Navbar.Collapse id="myNavBar">
+          <Navbar.Collapse id="myNavBar" className="justify-content-end">
             <Nav activeKey={`/${activePage}`}>
               {links.map(({ href, label }) => (
                 <Nav.Link key={href + label} className={"py-0"} href={href}>{label.toUpperCase()}</Nav.Link>
@@ -30,13 +30,11 @@ const navBar = ({ activePage }) => {
       </Navbar>
       <style jsx global>{`
       .navbar-brand {
-        font-size: 20px;
+        font-size: 30px;
       }
       .navbar {
-        height: ${navbarHeight};
         padding-top: ${navbarVerticalPadding};
         padding-bottom: ${navbarVerticalPadding};
-        font-size: 16px;
         border-bottom: 1px solid #EEE;
       }
     `}</style>

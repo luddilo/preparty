@@ -19,26 +19,27 @@ export default ({ title, children, pageRef }) => (
             color: #073642;
           }
           h1 {
-            font-size: 22px;
+            font-size: 28px;
           }
           h2 {
-            font-size: 18px;
+            font-size: 27px;
           }
           h3 {
-            font-size: 16px;
+            font-size: 26px;
           }
           html, #__next, #__next > div, body {
             height: 100%;
           }
           body {
             background-color: transparent;
-            font-size: 16px;
+            font-size: 24px;
           }
           .myContainer {
             background-color: white;
             height: calc(100% - ${navbarHeight} - 2*${navbarVerticalPadding});
             max-height: calc(100% - ${navbarHeight} - 2*${navbarVerticalPadding});
             padding-top: ${verticalPadding};
+            overflow-y: hidden
           }
           .full-height {
             height: 100%;
