@@ -166,8 +166,9 @@ class Log extends React.Component<LogProps, any> {
                 <style jsx>{`
                     .top {
                         // height: calc(100% - ${navbarVerticalPadding}*2 - ${navbarHeight});
-                        height: calc(100% - 160px); // the input bar is 40px + 80px padding
-                        padding-bottom: 40px;
+                        height: calc(100% - 105px); // the input bar is 40px + 75px padding
+                        padding-top: 40px;
+                        padding-bottom: 80px;
                         overflow-y: auto;
                     }
                 `}</style>

@@ -15,7 +15,7 @@ const links = [
 const navBar = ({ activePage }) => {
   return (
     <div>
-      <Navbar variant="light" expand="lg">
+      <Navbar variant="light" fixed="top" expand="lg">
         <Container>
           <Navbar.Brand className="py-0" href="/">PREPARTY LABS</Navbar.Brand>
           <Navbar.Toggle className="py-0" aria-controls="myNavBar" />

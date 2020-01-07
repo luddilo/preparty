@@ -36,8 +36,8 @@ export default ({ title, children, pageRef }) => (
           }
           .myContainer {
             background-color: white;
-            height: calc(100% - ${navbarHeight} - 2*${navbarVerticalPadding});
-            max-height: calc(100% - ${navbarHeight} - 2*${navbarVerticalPadding});
+            height: 100%;
+            max-height: 100%;
             padding-top: ${verticalPadding};
             overflow-y: hidden
           }

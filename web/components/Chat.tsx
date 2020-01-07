@@ -142,7 +142,7 @@ const Chat = ({ triggerEvent, showContent }) => {
                 .bottom {
                     position: fixed;
                     vertical-align: center;
-                    bottom: ${verticalPadding};
+                    bottom: 75px;
                     margin-left: -15px; // Since .container is used for the width, we need to add a negative margin to align the fixed bottom bar with the content above
                 }
             `}</style>
