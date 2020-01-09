@@ -38,8 +38,7 @@ export default ({ title, children, pageRef }) => (
             background-color: white;
             height: 100%;
             max-height: 100%;
-            padding-top: ${verticalPadding};
-            overflow-y: hidden
+            padding-top: ${verticalPadding}
           }
           .full-height {
             height: 100%;

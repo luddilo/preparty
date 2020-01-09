@@ -36,6 +36,7 @@ const navBar = ({ activePage }) => {
         padding-top: ${navbarVerticalPadding};
         padding-bottom: ${navbarVerticalPadding};
         border-bottom: 1px solid #EEE;
+        background-color: white;
       }
     `}</style>
     </div>
