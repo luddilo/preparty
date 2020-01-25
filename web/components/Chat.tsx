@@ -1,9 +1,6 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import Log from "./Log"
 import { callApi } from "../util/helpers"
-import Row from "react-bootstrap/Row"
-import Col from "react-bootstrap/Col"
-import { verticalPadding } from "../layouts/Settings"
 const sendImage = require("../assets/send.png")
 
 const MAX_HISTORY = 30
@@ -29,8 +26,6 @@ const Chat = ({ triggerEvent, showContent }) => {
     const [sessionId, setSessionId] = useState("") // SessionID for the Dialogflow session
     const [animating, setAnimating] = useState(false) // A variable keeping track of if we are animating or not
 
-    let textInput = React.createRef()
-
     useEffect(() => { // For handling the initial event, starting the chat
         handleEvent(triggerEvent)
     }, [triggerEvent])
@@ -54,9 +49,6 @@ const Chat = ({ triggerEvent, showContent }) => {
 
     const handleAnimation = (animating: boolean) => {
         setAnimating(animating)
-        //        if (!animating) {
-        //           textInput.current.focus()
-        //        }
     }
 
     const handleEvent = async (event: string, _sessionId: string = null) => {        
@@ -106,7 +98,7 @@ const Chat = ({ triggerEvent, showContent }) => {
                 handleLineBreak={handleLineBreak} 
             />
             <form className={"bottom container"} onSubmit={handleSubmit}>
-                <input className="form input" type="text" value={draft} onChange={(e) => setDraft(e.target.value)} />
+                <input autoFocus className="form input" type="text" value={draft} onChange={(e) => setDraft(e.target.value)} />
                 <button className="form submit" onClick={handleSubmit} disabled={draft == ""}>
                     <img className="sendImage" src={sendImage} />
                 </button>
