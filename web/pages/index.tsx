@@ -5,7 +5,7 @@ import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 
 const ChatPage = () => {
-  const [content, setContent] = useState()
+  const [content, setContent] : [any, any] = useState()
   const [jsx, setJsx] = useState(<div></div>)
 
   useEffect(() => {
