@@ -16,6 +16,6 @@
   "license": "ISC",
   "dependencies": {
     "@types/node": "^12.12.22",
-    "narratory": "^0.5.0"
+    "narratory": "^0.6.10"
   }
 }
