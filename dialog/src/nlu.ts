@@ -2,15 +2,18 @@ import { Entity, Intent, entities } from "narratory"
 
 export const Yes: Intent = {
     examples: [
-        "Yes",
+        "Yes", "Yep", "Yeah", "Yeh", "Yea"
         "Absolutely",
+        "Alright",
+        "Definitely",
+        "Exactly",
         "Of course",
-        "Yep",
-        "Okay",
-        "Yeah",
-        "Yeh",
+        "Okay", "Okey", "ok", "Ok", "OK",
+        "Sure",
         "Totally",
-        "Definitely"
+        "Well",
+        "I do", "I am", "I would",
+        "Let's try"
     ]
 }
 
@@ -23,33 +26,44 @@ export const No: Intent = {
         "Nah",
         "Totally not",
         "Absolutely not",
-        "Definitely not"
+        "Definitely not",
+        "No way",
+        "Not now", "Not sure", "Not really"
     ]
 }
 
 export const Great: Intent = {
     examples: [
         "Great",
-        "fabulous",
-        "good",
         "alright",
-        "fantastic",
-        "splendid",
-        "really good",
+        "amazing",
         "awesome",
+        "fabulous",
+        "fantastic",
+        "good", "really good",
+        "interesting",
         "magnificent",
+        "not bad",
+        "proficient", "proficiently",
+        "skilled"
+        "splendid",
         "terrific"
+        "well", "really well",
+        "wonderful",
+        "better than ...", "better than I expected"
     ]
 }
 
 export const Bad: Intent = {
     examples: [
-        "Terrible",
-        "Bad",
-        "Could do better",
+        "Bad", "really bad",
+        "horrible",
+        "lousy",
         "Not good",
-        "really bad",
-        "horrible"
+        "poor",
+        "terrible",
+        "Could do better", "Could be better",
+        "I expected more", "I'm frustrated", "I am frustrated"
     ]
 }
 
@@ -90,9 +104,9 @@ export const job: Entity = {
         { name: "entrepreneurship", alts: ["entrepreneur", "start companies", "co-founder", "cofounder", "founder", "founding companies"]},
         { name: "recruitment", alts: ["hr", "human resources", "recruiter", "recruiting", "talents"]},
         { name: "investment", alts: ["investing", "investor", "finance", "venture capital", "vc"]},
-        { name: "marketing", alts: ["marketing", "communications", "branding", "marcom" ]},
+        { name: "marketing", alts: ["marketing", "communications", "branding", "marcom", "marketeer" ]},
         { name: "sales", alts: ["selling"]},
-        { name: "development", alts: ["software development", "programming", "coding", "software" ]}
+        { name: "development", alts: ["software development", "programming", "coding", "software", "software developer", "developer", "dev", "programmer"]}
     ]
 }
 
@@ -101,11 +115,15 @@ export const IWorkWith: Intent = {
         job
     },
     examples: [
-        "I work in _job",
-        "I work as _job",
         "_job",
+        "I am a _job",
         "my job is _job",
-        "I am a _job"
+        "I work in _job", "Working in _job",
+        "I work as _job", "Working as _job",
+        "do _job", "doing _job", "I do _job", "I am doing _job", "i'm doing _job",
+        "_job person", "I am a _job person", "I'm a _job person",
+        "_job area", "_job field"
+        "Coming from _job"
     ]
 }
 
