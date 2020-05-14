@@ -12,7 +12,7 @@ const agent: Agent = {
     bridges: ["So", "Where were we", "Now"],
     narratoryKey: narratoryOptions.narratoryKey,
     googleCredentials: require("../google_credentials.json"),
-    fallbackWebhook: narratoryOptions.fallbackWebhook
+    logWebhook: narratoryOptions.fallbackWebhook
 }
 
 export default agent

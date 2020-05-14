@@ -65,37 +65,34 @@ export const Bad: Intent = {
         "Could do better", "Could be better",
         "I expected more", "I'm frustrated", "I am frustrated"
     ]
+
 }
 
 export const favNumber: Intent = {
-    examples: [
-        "what is your favorite number",
-        "what number do you like best",
-        "what number gets you going"
-    ]
+  examples: ["what is your favorite number", "what number do you like best", "what number gets you going"]
 }
 
 export const virtualAssistant: Entity = {
-    name: "virtualFriend",
-    enums: [
-        { name: "Alexa", alts: ["Alexa", "Amazon Alexa", "The amazon one"] },
-        { name: "Google home", alts: ["Google home", "Google assistant", "assistant from google"] },
-        { name: "Siri" },
-        { name: "Cortana" }
-    ]
+  name: "virtualFriend",
+  enums: [
+    { name: "Alexa", alts: ["Alexa", "Amazon Alexa", "The amazon one"] },
+    { name: "Google home", alts: ["Google home", "Google assistant", "assistant from google"] },
+    { name: "Siri" },
+    { name: "Cortana" }
+  ]
 }
 
 export const favAssistant: Intent = {
-    entities: { 
-        virtualFriend: virtualAssistant 
-    },
-    examples: [
-        "I love siri",
-        "I talk to Alexa at home",
-        "I have a Google home",
-        "my computer has cortana",
-        "google assistant on my phone"
-    ]
+  entities: {
+    virtualFriend: virtualAssistant
+  },
+  examples: [
+    "I love siri",
+    "I talk to Alexa at home",
+    "I have a Google home",
+    "my computer has cortana",
+    "google assistant on my phone"
+  ]
 }
 
 export const job: Entity = {
@@ -128,14 +125,10 @@ export const IWorkWith: Intent = {
 }
 
 export const MyEmailIs: Intent = {
-    entities: {
-        email: entities.email
-    },
-    examples: [
-        "my email is _email",
-        "it is _email",
-        "_email"
-    ]
+  entities: {
+    email: entities.email
+  },
+  examples: ["my email is _email", "it is _email", "_email"]
 }
 
 // Notes: env variable to allow special conditions for Google assistant account linking etc
