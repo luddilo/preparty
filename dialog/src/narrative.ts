@@ -1,4 +1,4 @@
-import { BotTurn, ANYTHING, BridgeTurn } from "narratory"
+import { BotTurn, ANYTHING, BridgeTurn, Image } from "narratory"
 import { Yes, No, IWorkWith, Great, Bad } from "./nlu"
 import { queryReachOut } from "./queryReachOut"
 
@@ -233,7 +233,12 @@ const furhatQuery: BotTurn = {
     },
     {
       intent: ["who is that", "who is furhat", "what is is", "furhat?"],
-      bot: "It is a social robot, quite spectacular",
+      bot: {
+        say: {
+          text: "Oh. Furhat is a social robot, quite spectacular",
+          content: new Image("https://www.robotlab.com/hubfs/furhat%20photoshop%203-1.png", "Furhat robot")
+        }
+      },
     },
   ],
 }
