@@ -3,21 +3,24 @@ import { Yes, No, IWorkWith, Great, Bad } from "./nlu"
 import { queryReachOut } from "./queryReachOut"
 
 const greeting = ["hi there", "hello there", "hi"]
-const welcome = ["welcome to the Preparty", "welcome to Preparty", "welcome to the Preparty agency"]
+const welcome = ["welcome to the Preparty agency", "welcome to Preparty agency", "welcome to the Preparty agency"]
 
 const intro = [
   "we are a few tech enthusiasts with a strength in interactive experiences",
   "we make interactive stuff",
-  "we are a company creating interactive experiences"
+  "we are a company creating interactive experiences",
 ]
 const bridge = ["like this dialog", "like the chat we're having now", "like the conversation we're having now"]
 
 export const curious: BotTurn = {
-  say: [
-    "Do you want to hear more, or perhaps look at some projects we have done?",
-    "Wanna hear more, or see some projects we have worked on?",
-    "Should I tell you more, or perhaps show you some of our work?"
-  ],
+  say: {
+    text: [
+      "Do you want to hear more, or perhaps look at some projects we have done?",
+      "Wanna hear more, or see some projects we have worked on?",
+      "Should I tell you more, or perhaps show you some of our work?",
+    ],
+    suggestions: ["Tell me more", "Show me projects"],
+  },
   user: [
     {
       intent: [
@@ -28,9 +31,9 @@ export const curious: BotTurn = {
         "tell me more",
         "keep telling me",
         "continue",
-        "the first"
+        "the first",
       ],
-      bot: ["Awesome", "Sweet", "Great"]
+      bot: ["Awesome", "Sweet", "Great"],
     },
     {
       intent: [
@@ -40,29 +43,29 @@ export const curious: BotTurn = {
         "the second",
         "show the work",
         "work",
-        "the projects you have done"
+        "the projects you have done",
       ],
       bot: {
         say: ["Great", "Absolutely"],
-        goto: "PROJECTS"
-      }
+        goto: "PROJECTS",
+      },
     },
-    { intent: ANYTHING, bot: "I'll tell you some more" }
-  ]
+    { intent: ANYTHING, bot: "I'll tell you some more" },
+  ],
 }
 
 const purpose: BotTurn = {
   say: [
     "Our purpose at Preparty is to help bring great products to the world.",
-    "Our mission, at Preparty, is to help entrepreneurs bring great products to the world."
-  ]
+    "Our mission, at Preparty, is to help entrepreneurs bring great products to the world.",
+  ],
 }
 
 const talent: BotTurn = {
   say: [
     "We know it's hard to find tech talent, and we want to do what we can help the best ideas to fly",
-    "In this world where tech talent is hard to find, we want to help ideas we believe in to get up in the air"
-  ]
+    "In this world where tech talent is hard to find, we want to help ideas we believe in to get up in the air",
+  ],
 }
 
 const founder: BotTurn = {
@@ -74,17 +77,17 @@ const founder: BotTurn = {
         {
           cond: { job: "recruitment" },
           say: "Happy to hear. We would be happy to hear if you have clients that might be interested working with us",
-          bot: queryReachOut("how we work with recruiters")
+          bot: queryReachOut("how we work with recruiters"),
         },
         {
           cond: { job: "entrepreneurship" },
           say: "Great to hear. We are entreprenurs ourselves and would love to hear about your ideas!",
-          bot: queryReachOut("how we work with startups")
+          bot: queryReachOut("how we work with startups"),
         },
         {
           cond: { job: "investment" },
           say: "Very nice! Without you, many ideas would never reach the world.",
-          bot: queryReachOut("how we work with investors")
+          bot: queryReachOut("how we work with investors"),
         },
         {
           cond: { job: "marketing" },
@@ -94,17 +97,17 @@ const founder: BotTurn = {
               intent: Yes,
               bot: {
                 say: "I really think so too",
-                bot: queryReachOut("how we could work with marketing departments")
-              }
+                bot: queryReachOut("how we could work with marketing departments"),
+              },
             },
             {
               intent: No,
               bot: {
                 say: "I see. Well, I trust that you know your customers best.",
-                bot: queryReachOut("how we think we could help marketeers")
-              }
-            }
-          ]
+                bot: queryReachOut("how we think we could help marketeers"),
+              },
+            },
+          ],
         },
         {
           cond: { job: "sales" },
@@ -114,33 +117,36 @@ const founder: BotTurn = {
               intent: Great,
               bot: {
                 say: ["Thanks. You're kind :-)", "Thanks. That makes me blush ;-)"],
-                bot: queryReachOut("how we could help sales teams")
-              }
+                bot: queryReachOut("how we could help sales teams"),
+              },
             },
             {
               intent: Bad,
               bot: {
                 say: "I see. Well, I trust that you could help me get better",
-                bot: queryReachOut("how we together could create great sales experiences using chat")
-              }
+                bot: queryReachOut("how we together could create great sales experiences using chat"),
+              },
             },
             {
               intent: ANYTHING,
               bot: {
                 say: "I didn't quite get that, but I trust that you could help me get better",
-                bot: queryReachOut("how we together could create great sales experiences using chat")
-              }
-            }
-          ]
-        }
-      ]
+                bot: queryReachOut("how we together could create great sales experiences using chat"),
+              },
+            },
+          ],
+        },
+      ],
     },
-    { intent: ANYTHING, bot: "Alright! Nice! Now." }
-  ]
+    { intent: ANYTHING, bot: "Alright! Nice! Now." },
+  ],
 }
 
 const projects: BotTurn = {
-  say: "Do you want to see some projects that we have done?",
+  say: {
+    text: "Do you want to see some projects that we have done?",
+    suggestions: ["Yes, show me projects", "No thanks"],
+  },
   user: [
     { intent: [...Yes.examples, "I do", "show me projects"], bot: "Great" },
     {
@@ -152,11 +158,11 @@ const projects: BotTurn = {
             intent: Yes,
             bot: {
               say: "Okay, no problem!",
-              goto: "END"
-            }
-          }
-        ]
-      }
+              goto: "END",
+            },
+          },
+        ],
+      },
     },
     {
       intent: ANYTHING,
@@ -164,14 +170,14 @@ const projects: BotTurn = {
         {
           cond: { repairCount: 1 },
           say: "Not sure I got that chief. Could you rephrase please?",
-          repair: true
+          repair: true,
         },
         {
-          say: "Still didn't get it, but I'll move on and show some projects"
-        }
-      ]
-    }
-  ]
+          say: "Still didn't get it, but I'll move on and show some projects",
+        },
+      ],
+    },
+  ],
 }
 
 const narratory: BridgeTurn = {
@@ -185,64 +191,67 @@ const narratory: BridgeTurn = {
         intent: [...Yes.examples, "neat"],
         bot: {
           say: "Right? You can actually try it out yourself on narratory.io, it's free!",
-          bot: queryReachOut("Narratory")
-        }
+          bot: queryReachOut("Narratory"),
+        },
       },
       {
         intent: [...No.examples, "not neat"],
         bot: {
           say: "I guess awesome stuff isn't for everyone ;-) anyway",
-          bot: queryReachOut("Narratory")
-        }
+          bot: queryReachOut("Narratory"),
+        },
       },
       {
         intent: ANYTHING,
         bot: {
           say: "I didn't quite get that. But I'm learning every day!",
-          bot: queryReachOut("Narratory")
-        }
-      }
-    ]
-  }
+          bot: queryReachOut("Narratory"),
+        },
+      },
+    ],
+  },
 }
 
 const projectExamples = [
   "Among other things, we have built really cool experiences for the Furhat robot",
-  "Other than that, we've build pretty ground-breaking experiences with the Furhat robot"
+  "Other than that, we've build pretty ground-breaking experiences with the Furhat robot",
 ]
 
 const furhatQuery: BotTurn = {
-  say: "have you met Furhat, perhaps?",
+  say: {
+    text: "have you met Furhat, perhaps?",
+    suggestions: ["I have", "No", "Furhat?"],
+  },
   user: [
     {
       intent: [...Yes.examples, "I have"],
-      bot: "Awesome. That makes a bot happy :-)"
+      bot: "Awesome. That makes a bot happy :-)",
     },
     {
       intent: [...No.examples, "I have not", "I don't know", "dunno"],
-      bot: "I see. Maybe one day!"
+      bot: "I see. Maybe one day!",
     },
     {
-      intent: ["who is that", "who is furhat", "what is is"],
-      bot: "It is a social robot, quite spectacular"
-    }
-  ]
+      intent: ["who is that", "who is furhat", "what is is", "furhat?"],
+      bot: "It is a social robot, quite spectacular",
+    },
+  ],
 }
 
 const gitex: Array<BotTurn | string> = [
   {
     say:
-      "One thing we are proud to have built for Furhat is a retail assistant that handled in-store pickups and returns. It was then showcased at the big GITEX fair in Dubai"
+      "One thing we are proud to have built for Furhat is a retail assistant that handled in-store pickups and returns. It was then showcased at the big GITEX fair in Dubai",
   },
-  "Maybe next time you come around, I could show you a video of it!"
+  "Maybe next time you come around, I could show you a video of it!",
 ]
 
 const moreFurhat: BotTurn = {
-  say: "Speaking about Furhat, we also worked on apps for robot receptionists, greeters, recruiters and more."
+  say: "Speaking about Furhat, we also worked on apps for robot receptionists, greeters, recruiters and more.",
 }
 
 const tellMore: BotTurn = {
-  say: "To not bore you, please check out the porfolio page to see more examples of projects we've done."
+  say: "To not bore you, please check out the porfolio page to see more examples of projects we've done.",
 }
 
 const workWith: BridgeTurn = {
@@ -250,10 +259,10 @@ const workWith: BridgeTurn = {
   bot: [
     {
       cond: { signedUp: true },
-      say: "Since you already gave us your email, we'll reach out to you and we can continue the discussion there."
+      say: "Since you already gave us your email, we'll reach out to you and we can continue the discussion there.",
     },
-    ...queryReachOut("about how we could work together")
-  ]
+    ...queryReachOut("about how we could work together"),
+  ],
 }
 
 const end: BotTurn = {
@@ -261,19 +270,19 @@ const end: BotTurn = {
   say: [
     {
       cond: { turnCount: 0 },
-      text: "Now, do you any questions for me? If not, feel free to browse around the site"
+      text: "Now, do you any questions for me? If not, feel free to browse around the site",
     },
     {
       cond: { turnCount: 1 },
-      text: ["Any other questions for me?", "Do you have any more questions?"]
+      text: ["Any other questions for me?", "Do you have any more questions?"],
     },
     {
       text: [
         "I like that you're hungry! Shoot any other questions you might have",
         "You're interested, that makes me happy! Any other question?",
-        "Anything else you wonder?"
-      ]
-    }
+        "Anything else you wonder?",
+      ],
+    },
   ],
   user: [
     {
@@ -282,15 +291,15 @@ const end: BotTurn = {
         {
           cond: { retryCount: 1 },
           say: "I didn't get that. Can you rephrase?",
-          repair: true
+          repair: true,
         },
         {
           say: "Sorry, I can't answer that yet. In the future, I might! Wanna ask me something else?",
-          repair: true
-        }
-      ]
-    }
-  ]
+          repair: true,
+        },
+      ],
+    },
+  ],
 }
 
 export default [
@@ -310,5 +319,5 @@ export default [
   moreFurhat,
   tellMore,
   workWith,
-  end
+  end,
 ]

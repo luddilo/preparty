@@ -34,27 +34,26 @@ const Chat = ({ triggerEvent, showContent }) => {
   useEffect(() => {
     if (!animating && newMessages.length != 0) {
       setAnimating(true) // Set animating to true, to prevent multiple messages to be printed at once
-      setHistory(history =>
-        history.concat([newMessages[0]]).slice(-MAX_HISTORY)
-      ) // Add the first new message to our history
-      setNewMessages(newMessages => newMessages.slice(1)) // Remove the message we just put up
+      setHistory((history) => history.concat([newMessages[0]]).slice(-MAX_HISTORY)) // Add the first new message to our history
+      setNewMessages((newMessages) => newMessages.slice(1)) // Remove the message we just put up
     }
   }, [animating, newMessages]) // This effect should run everytime these two variables are updated
 
   const addMessagesToLog = (
     messages: {
       text: string
+      suggestions?: string[]
       richContent: boolean
       customEvent: string
       fromUser: boolean
     }[]
   ) => {
-    setNewMessages(newMessages => newMessages.concat(messages))
+    setNewMessages((newMessages) => newMessages.concat(messages))
   }
 
   const handleLineBreak = () => {
     //setNewMessages(newMessages => splitMessages.slice(1).concat(newMessages)) // not needed any more, saving for reference
-    setNewMessages(newMessages => [{}].concat(newMessages))
+    setNewMessages((newMessages) => [{}].concat(newMessages))
   }
 
   const handleAnimation = (animating: boolean) => {
@@ -65,12 +64,12 @@ const Chat = ({ triggerEvent, showContent }) => {
     const response = await callApi("api/call-narratory", {
       event,
       contexts,
-      sessionId: _sessionId
+      sessionId: _sessionId,
     })
     handleResponse(response)
   }
 
-  const handleResponse = response => {
+  const handleResponse = (response) => {
     addMessagesToLog(response.messages)
 
     if (response.contexts != contexts) {
@@ -81,16 +80,14 @@ const Chat = ({ triggerEvent, showContent }) => {
     }
   }
 
-  const handleSubmit = async e => {
-    e.preventDefault()
-    const userMessage = draft
+  const handleUserMessage = async (userMessage: string) => {
     addMessagesToLog([
       {
         text: userMessage,
         richContent: false,
         customEvent: null,
-        fromUser: true
-      }
+        fromUser: true,
+      },
     ])
 
     setDraft("")
@@ -98,9 +95,14 @@ const Chat = ({ triggerEvent, showContent }) => {
     const response = await callApi("api/call-narratory", {
       message: userMessage,
       contexts,
-      sessionId
+      sessionId,
     })
     handleResponse(response)
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    handleUserMessage(draft)
   }
 
   const sendButtonWidth = "40px"
@@ -109,24 +111,16 @@ const Chat = ({ triggerEvent, showContent }) => {
     <div className="full-height">
       <Log
         messages={history}
+        last={newMessages.length == 0}
         setAnimating={handleAnimation}
         handleEvent={showContent}
         showContent={showContent}
         handleLineBreak={handleLineBreak}
+        handleClick={handleUserMessage}
       />
       <form className={"bottom container"} onSubmit={handleSubmit}>
-        <input
-          autoFocus
-          className="form input"
-          type="text"
-          value={draft}
-          onChange={e => setDraft(e.target.value)}
-        />
-        <button
-          className="form submit"
-          onClick={handleSubmit}
-          disabled={draft == ""}
-        >
+        <input autoFocus className="form input" type="text" value={draft} onChange={(e) => setDraft(e.target.value)} />
+        <button className="form submit" onClick={handleSubmit} disabled={draft == ""}>
           <img className="sendImage" src={sendImage} />
         </button>
       </form>
